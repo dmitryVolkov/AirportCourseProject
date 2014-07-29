@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="AirportPersistenceUnit" transaction-type="JTA">
+        <jta-data-source>jdbc/airport</jta-data-source>
+        <class>model.Category</class>
+        <class>model.Flight</class>
+        <class>model.Pilot</class>
+        <class>model.Plane</class>
+        <class>model.Route</class>
+        <class>model.Ticket</class>
+    </persistence-unit>
+    <persistence-unit name="AirusersPersistenceUnit" transaction-type="JTA">
+        <jta-data-source>jdbc/airusers</jta-data-source>
+        <class>model.Billstat</class>
+        <class>model.User</class>
+        <class>model.Group</class>
+    </persistence-unit>
+    <persistence-unit name="AirreservingPersistenceUnit" transaction-type="JTA">
+        <jta-data-source>jdbc/airreserve</jta-data-source>
+        <class>model.Discount</class>
+        <class>model.Reservebill</class>
+        <class>model.Reserving</class>
+    </persistence-unit>
+</persistence>

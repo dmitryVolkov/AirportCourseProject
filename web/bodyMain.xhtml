@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <h:outputStylesheet library="css" name="style.css"  />
+    <div id="main">
+        <div id="header">
+            <div id="logo">
+                <h1>Аэропорт<a>№148</a></h1>
+                <div class="slogan">VladimirAir</div>
+            </div>
+            <div id="menubar">
+                <ul id="menu">
+                    <li class="current"><a jsfc="h:outputLink" action="index">Домашняя</a></li>
+                    <li class="current"><a jsfc="h:outputLink" value="client/clientPage.xhtml">Страница клиента</a></li>
+                    <li class="current"><a jsfc="h:outputLink" value="admin/adminPage.xhtml">Страница админа</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="site_content">
+            <div id="content">
+                <p:panel style="width: 95%; left: 100px; color: yellow">
+                    <ui:insert name="content">
+
+                    </ui:insert>
+                </p:panel>
+            </div>
+        </div>
+        <div id="footer">
+            <p>Vladimir State University, 2014</p>
+        </div>
+    </div>
+</h:body>
+
+</html>

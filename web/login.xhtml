@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Страница авторизации</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="bodyMain.xhtml">
+        <ui:define name="content">
+            <form method="post" action="j_security_check">
+                <h:panelGrid columns="2" style="background-color: aquamarine;border: 1px;position: relative;left: 500px;"
+                             styleClass="ui-panelgrid ui-widget">
+                    <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
+                                   for="j_username" value="Логин" />
+                    <input type="text" name="j_username" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all" />
+                    <h:outputLabel for="j_password" value="Пароль" />
+                    <input type="password" name="j_password" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all"/>
+                    <h:outputText value="" />
+                    <input type="submit" name="submit" value="Авторизоваться" />
+                </h:panelGrid>
+            </form>
+            <h:outputLink value="../register.xhtml" style="position: relative; left: 500px; color: red">
+                Зарегистрироваться
+            </h:outputLink>
+            <br/>
+            <h:outputLink value="../index.xhtml" style="position: relative;left: 500px; color: red">
+                Вернуться на главную страницу</h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
