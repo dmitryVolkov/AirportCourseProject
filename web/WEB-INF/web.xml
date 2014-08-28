@@ -15,7 +15,7 @@
     </servlet-mapping>
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Production</param-value>
+        <param-value>Development</param-value>
     </context-param>
     <persistence-context-ref>
         <persistence-context-ref-name>persistence/airport</persistence-context-ref-name>
@@ -60,4 +60,8 @@
             <role-name>USER</role-name>
         </auth-constraint>
     </security-constraint>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/login/permissionsError.xhtml</location>
+    </error-page>
 </web-app>

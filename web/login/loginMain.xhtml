@@ -25,10 +25,10 @@
                     <h:form>
                         <h:outputText value="Добро пожаловать, #{authBackingBean.userOnline.lastName}
                             #{authBackingBean.userOnline.firstName}" style="color: red;
-                            position:relative; right: 250px"/>
+                            position:relative; right: 180px"/>
                         <br/>
                         <h:commandLink value="Выйти" action="#{authBackingBean.logout()}"
-                                       style="position:relative; right: 250px"/>
+                                       style="position:relative; right: 180px"/>
                     </h:form>
                 </ui:fragment>
                 <h1 style="position: relative; left: 300px;">Аэропорт<a>№148</a></h1>
@@ -41,7 +41,7 @@
                         <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
                                        value="Логин"/>
                         <p:inputText value="#{authBackingBean.login}"/>
-                        <h:commandButton value="Войти" action="#{authBackingBean.login()}"
+                        <h:commandButton value="Войти" action="#{authBackingBean.loginToSite()}"
                                          styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
                         <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
                                        value="Пароль"/>
@@ -52,7 +52,7 @@
             </h:form>
             <div id="menubar">
                 <ul id="menu">
-                    <li class="current"><a jsfc="h:outputLink" action="index.xhtml">Домашняя</a></li>
+                    <li class="current"><a jsfc="h:outputLink" value="../main/index.xhtml">Домашняя</a></li>
                     <li class="current"><a jsfc="h:outputLink" value="../client/clientPage.xhtml">Страница клиента</a></li>
                     <li class="current"><a jsfc="h:outputLink" value="../admin/adminPage.xhtml">Страница админа</a></li>
                 </ul>
@@ -60,11 +60,9 @@
         </div>
         <div id="site_content">
             <div id="content">
-                <p:panel style="width: 95%; left: 100px; color: yellow">
-                    <ui:insert name="content">
+                <ui:insert name="content">
 
-                    </ui:insert>
-                </p:panel>
+                </ui:insert>
             </div>
         </div>
         <div id="footer">

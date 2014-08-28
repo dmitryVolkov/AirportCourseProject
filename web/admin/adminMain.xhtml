@@ -24,13 +24,13 @@
                     <h:form>
                         <h:outputText value="Добро пожаловать, #{authBackingBean.userOnline.lastName}
                             #{authBackingBean.userOnline.firstName}" style="color: red;
-                            position:relative; right: 250px"/>
+                            position:relative; right: 180px"/>
                         <br/>
                         <h:commandLink value="Выйти" action="#{authBackingBean.logout()}"
-                                       style="position:relative; right: 250px"/>
+                                       style="position:relative; right: 180px"/>
                     </h:form>
                 </ui:fragment>
-                <h1>Аэропорт<a>№148</a></h1>
+                <h1 style="position: relative; left: 300px;">Аэропорт<a>№148</a></h1>
                 <div class="slogan">VladimirAir</div>
             </div>
             <h:form>
@@ -40,7 +40,7 @@
                         <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
                                        value="Логин"/>
                         <p:inputText value="#{authBackingBean.login}"/>
-                        <h:commandButton value="Войти" action="#{authBackingBean.login()}"
+                        <h:commandButton value="Войти" action="#{authBackingBean.loginToSite()}"
                                          styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
                         <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
                                        value="Пароль"/>
@@ -51,9 +51,9 @@
             </h:form>
             <div id="menubar">
                 <ul id="menu">
-                    <li class="current"><a jsfc="h:outputLink" value="../index.xhtml">Домашняя</a></li>
+                    <li class="current"><a jsfc="h:outputLink" value="../main/index.xhtml">Домашняя</a></li>
                     <li class="current"><a jsfc="h:outputLink" value="../client/clientPage.xhtml">Страница клиента</a></li>
-                    <li class="current"><a jsfc="h:outputLink" value="../adminPage.xhtml">Страница админа</a></li>
+                    <li class="current"><a jsfc="h:outputLink" value="../admin/adminPage.xhtml">Страница админа</a></li>
                 </ul>
             </div>
         </div>

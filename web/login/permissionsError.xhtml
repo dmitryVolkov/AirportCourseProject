@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
+
 <h:head>
-    <title>Main Page</title>
+    <title>Недостаточно прав</title>
     <meta name="description" content="website description" />
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -15,17 +19,13 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="main/bodyMain.xhtml">
+    <h:outputStylesheet library="css" name="style.css"  />
+    <ui:composition template="../main/bodyMain.xhtml">
         <ui:define name="content">
-            <h:outputText value="HomePage"/>
-            <h:outputText value="HomePage"/>
-            <h:outputText value="HomePage"/>
-            <h:outputText value="HomePage"/>
-            <h:outputText value="HomePage"/>
-            <h:outputText value="HomePage"/>
-            <h:outputText value="HomePage"/>
-            <h:outputText value="HomePage"/>
+            <h3><p:outputLabel value="У вас недостаточно прав"/></h3>
+            <h:outputLink value="../main/index.xhtml" style="color: red">Вернуться на главную страницу</h:outputLink>
         </ui:define>
     </ui:composition>
 </h:body>
+
 </html>

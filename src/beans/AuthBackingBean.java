@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.logging.Level;
@@ -28,7 +29,7 @@ public class AuthBackingBean {
     @EJB
     private AuthEJBBeanLocal authEJB;
 
-    public String login(){
+    public String loginToSite(){
         userOnline = authEJB.findUserByLogin(login, password);
         HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
@@ -36,12 +37,7 @@ public class AuthBackingBean {
         } catch (ServletException e) {
             e.printStackTrace();
         }
-        StringBuffer stringBuffer = origRequest.getRequestURL();
-        String[] mas = stringBuffer.toString().split(Pattern.quote("//"));
-        String[] projURL = mas[mas.length - 1].split(Pattern.quote("/"));
-        String resultPageExt = projURL[projURL.length - 1];
-        String[] resultPageExtMas = resultPageExt.split(Pattern.quote("."));
-        return resultPageExtMas[resultPageExtMas.length - 1];
+        return "../login/login.xhtml";
     }
 
     public String logout() {

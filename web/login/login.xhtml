@@ -6,7 +6,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>Страница авторизации</title>
@@ -20,27 +22,37 @@
 <h:body>
     <ui:composition template="loginMain.xhtml">
         <ui:define name="content">
-            <form method="post" action="j_security_check">
-                <h:panelGrid columns="2" style="background-color: aquamarine;
-                                                border: 1px;position: relative;
-                                                left: 500px;"
-                             styleClass="ui-panelgrid ui-widget">
-                    <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
-                                   for="j_username" value="Логин" />
-                    <input type="text" name="j_username" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all" />
-                    <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
-                                   for="j_password" value="Пароль" />
-                    <input type="password" name="j_password" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all"/>
-                    <h:outputText value="" />
-                    <input type="submit" name="submit" value="Авторизоваться" />
-                </h:panelGrid>
-            </form>
-            <h:outputLink value="../register.xhtml" style="position: relative; left: 500px; color: red">
-                Зарегистрироваться
-            </h:outputLink>
-            <br/>
-            <h:outputLink value="../index.xhtml" style="position: relative;left: 500px; color: red">
-                Вернуться на главную страницу</h:outputLink>
+            <ui:fragment rendered="#{authBackingBean.userOnline == null}">
+            <h:form>
+                    <h:panelGrid columns="2" style="background-color: aquamarine;
+                                                    border: 1px;position: relative;
+                                                    left: 500px;"
+                                 styleClass="ui-panelgrid ui-widget">
+                        <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
+                                       for="j_username" value="Логин" />
+                        <p:inputText name="j_username" value="#{authBackingBean.login}" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all" />
+                        <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
+                                       for="j_password" value="Пароль" />
+                        <p:password value="#{authBackingBean.password}" name="j_password" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all"/>
+                        <h:outputText value="" />
+                        <h:commandButton name="submit" value="Авторизоваться" action="#{authBackingBean.loginToSite()}"/>
+                    </h:panelGrid>
+                </h:form>
+                <h:outputLink value="../register.xhtml" style="position: relative; left: 500px; color: red">
+                    Зарегистрироваться
+                </h:outputLink>
+                <br/>
+                <h:outputLink value="../main/index.xhtml" style="position: relative;left: 500px; color: red">
+                    Вернуться на главную страницу
+                </h:outputLink>
+            </ui:fragment>
+            <ui:fragment rendered="#{authBackingBean.userOnline != null}">
+                <h3><h:outputLabel value="Авторизация прошла успешно. Добро пожаловать, #{authBackingBean.userOnline.lastName}
+                     #{authBackingBean.userOnline.firstName}."/></h3>
+                <h:outputLink value="../main/index.xhtml" style="color: royalblue">
+                    Вернуться на главную страницу
+                </h:outputLink>
+            </ui:fragment>
         </ui:define>
     </ui:composition>
 </h:body>

@@ -47,6 +47,8 @@ public class AuthEJBBean implements AuthEJBBeanLocal {
      * @return
      */
     public String getHash(String str) {
+        if (str == null || str.equals(""))
+            return str;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(str.getBytes());
