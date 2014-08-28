@@ -18,15 +18,18 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="bodyMain.xhtml">
+    <ui:composition template="loginMain.xhtml">
         <ui:define name="content">
             <form method="post" action="j_security_check">
-                <h:panelGrid columns="2" style="background-color: aquamarine;border: 1px;position: relative;left: 500px;"
+                <h:panelGrid columns="2" style="background-color: aquamarine;
+                                                border: 1px;position: relative;
+                                                left: 500px;"
                              styleClass="ui-panelgrid ui-widget">
                     <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
                                    for="j_username" value="Логин" />
                     <input type="text" name="j_username" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all" />
-                    <h:outputLabel for="j_password" value="Пароль" />
+                    <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
+                                   for="j_password" value="Пароль" />
                     <input type="password" name="j_password" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all"/>
                     <h:outputText value="" />
                     <input type="submit" name="submit" value="Авторизоваться" />

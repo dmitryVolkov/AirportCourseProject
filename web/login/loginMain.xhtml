@@ -5,8 +5,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <meta name="description" content="website description" />
     <meta name="keywords" content="website keywords, website keywords" />
@@ -30,7 +31,7 @@
                                        style="position:relative; right: 250px"/>
                     </h:form>
                 </ui:fragment>
-                <h1>Аэропорт<a>№148</a></h1>
+                <h1 style="position: relative; left: 300px;">Аэропорт<a>№148</a></h1>
                 <div class="slogan">VladimirAir</div>
             </div>
             <h:form>
@@ -51,17 +52,19 @@
             </h:form>
             <div id="menubar">
                 <ul id="menu">
-                    <li class="current"><a jsfc="h:outputLink" value="../index.xhtml">Домашняя</a></li>
-                    <li class="current"><a jsfc="h:outputLink" value="../clientPage.xhtml">Страница клиента</a></li>
+                    <li class="current"><a jsfc="h:outputLink" action="index.xhtml">Домашняя</a></li>
+                    <li class="current"><a jsfc="h:outputLink" value="../client/clientPage.xhtml">Страница клиента</a></li>
                     <li class="current"><a jsfc="h:outputLink" value="../admin/adminPage.xhtml">Страница админа</a></li>
                 </ul>
             </div>
         </div>
         <div id="site_content">
             <div id="content">
-                <ui:insert name="content">
+                <p:panel style="width: 95%; left: 100px; color: yellow">
+                    <ui:insert name="content">
 
-                </ui:insert>
+                    </ui:insert>
+                </p:panel>
             </div>
         </div>
         <div id="footer">

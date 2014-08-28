@@ -7,4 +7,6 @@ public class AdminEJBBean implements AdminEJBLocal {
 
     public AdminEJBBean(){}
 
+
+
 }

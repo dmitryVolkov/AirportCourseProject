@@ -24,6 +24,7 @@
         <setting name="provider-name" value="EclipseLink" />
         <datasource-mapping>
           <factory-entry name="AirportPersistenceUnit" />
+          <factory-entry name="AirreservingPersistenceUnit" />
           <factory-entry name="AirusersPersistenceUnit" />
           <factory-entry name="UsersPersistenceUnit" />
         </datasource-mapping>

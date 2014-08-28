@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <meta name="description" content="website description" />
@@ -20,9 +20,35 @@
     <div id="main">
         <div id="header">
             <div id="logo">
+                <ui:fragment rendered="#{authBackingBean.userOnline != null}">
+                    <h:form>
+                        <h:outputText value="Добро пожаловать, #{authBackingBean.userOnline.lastName}
+                            #{authBackingBean.userOnline.firstName}" style="color: red;
+                            position:relative; right: 250px"/>
+                        <br/>
+                        <h:commandLink value="Выйти" action="#{authBackingBean.logout()}"
+                                       style="position:relative; right: 250px"/>
+                    </h:form>
+                </ui:fragment>
                 <h1>Аэропорт<a>№148</a></h1>
                 <div class="slogan">VladimirAir</div>
             </div>
+            <h:form>
+                <ui:fragment rendered="#{authBackingBean.userOnline == null}">
+                    <h:panelGrid columns="3" style="background-color: aquamarine;
+                                                border: 1px;position: relative; right: 1050px">
+                        <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
+                                       value="Логин"/>
+                        <p:inputText value="#{authBackingBean.login}"/>
+                        <h:commandButton value="Войти" action="#{authBackingBean.login()}"
+                                         styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
+                        <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
+                                       value="Пароль"/>
+                        <p:password value="#{authBackingBean.password}"/>
+                        <h:outputLink value="../register.xhtml">Регистрация</h:outputLink>
+                    </h:panelGrid>
+                </ui:fragment>
+            </h:form>
             <div id="menubar">
                 <ul id="menu">
                     <li class="current"><a jsfc="h:outputLink" value="../index.xhtml">Домашняя</a></li>

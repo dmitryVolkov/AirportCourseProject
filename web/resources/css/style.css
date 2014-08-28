@@ -94,8 +94,8 @@ ol li
   margin-right: auto;}
 
 #main
-{ width: 950px;
-  margin: 20px auto;}
+{ width: 980px;
+  margin: 10px auto;}
 
 #header
 { width: 952px;
@@ -104,7 +104,7 @@ ol li
 #logo
 { width: 950px;
   float: left;
-  height: 100px;
+  height: 220px;
   background: transparent;
   padding: 0 0 0px 10px;}
 
