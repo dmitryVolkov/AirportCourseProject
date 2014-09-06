@@ -25,6 +25,12 @@
             <h:outputText value="HomePage"/>
             <h:outputText value="HomePage"/>
             <h:outputText value="HomePage"/>
+            <ui:fragment rendered="#{request.isUserInRole('USER')}">
+                <h:outputText value="USER ONLINE"/>
+            </ui:fragment>
+            <ui:fragment rendered="#{request.isUserInRole('ADMIN')}">
+                <h:outputText value="ADMIN ONLINE"/>
+            </ui:fragment>
         </ui:define>
     </ui:composition>
 </h:body>

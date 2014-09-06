@@ -33,8 +33,8 @@
         <auth-method>FORM</auth-method>
         <realm-name>jdbc-realm</realm-name>
         <form-login-config>
-            <form-login-page>/login/login.xhtml</form-login-page>
-            <form-error-page>/login/loginError.xhtml</form-error-page>
+            <form-login-page>/auth/login.xhtml</form-login-page>
+            <form-error-page>/auth/loginError.xhtml</form-error-page>
         </form-login-config>
     </login-config>
     <security-constraint>
@@ -62,6 +62,6 @@
     </security-constraint>
     <error-page>
         <error-code>403</error-code>
-        <location>/login/permissionsError.xhtml</location>
+        <location>/auth/permissionsError.xhtml</location>
     </error-page>
 </web-app>

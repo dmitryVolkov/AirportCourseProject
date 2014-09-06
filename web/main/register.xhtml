@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"  >
+
+<h:head>
+    <title>Страница регистрации</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</h:head>
+
+<h:body>
+    <ui:composition template="bodyMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputText value="Регистрация"/></h3>
+            <h:form>
+                <f:validateBean>
+                    <f:event type="postValidate" listener="#{registrationBean.validatePassword}"/>
+                    <f:event type="postValidate" listener="#{registrationBean.validateNoExistingOfLogin}"/>
+                    <f:event type="postValidate" listener="#{registrationBean.validateEMailMask}"/>
+                    <f:event type="postValidate" listener="#{registrationBean.validatePhoneNumberByDigit}"/>
+                    <p:messages/>
+                    <p:panelGrid columns="2" style="border:1px">
+                        <p:outputLabel value="Логин"/>
+                        <p:inputText value="#{registrationBean.userName}" id="login"/>
+
+                        <p:outputLabel value="Пароль"/>
+                        <p:password value="#{registrationBean.password}" id="password"/>
+
+                        <p:outputLabel value="Повторите пароль"/>
+                        <p:password value="#{registrationBean.repeatPassword}" id="repeatPass"/>
+
+                        <p:outputLabel value="Фамилия"/>
+                        <p:inputText value="#{registrationBean.lastName}" id="surname"/>
+
+                        <p:outputLabel value="Имя"/>
+                        <p:inputText value="#{registrationBean.firstName}" id="name"/>
+
+                        <p:outputLabel value="Отчество"/>
+                        <p:inputText value="#{registrationBean.middleName}" id="patronymic"/>
+
+                        <p:outputLabel value="Номер телефона"/>
+                        <p:inputText value="#{registrationBean.phoneNumber}" id="phoneNumber"/>
+
+                        <p:outputLabel value="EMail"/>
+                        <p:inputText value="#{registrationBean.eMail}" id="eMail"/>
+
+                        <p:outputLabel value="Дата рождения"/>
+                        <p:inputText value="#{registrationBean.dateOfBirth}" id="birthDate"
+                                     converterMessage="Дата рождения должна иметь формат ДД-ММ-ГГГГ">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </p:inputText>
+
+                    </p:panelGrid>
+                    <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                     value="Зарегистрироваться" action="#{registrationBean.register()}"/>
+                </f:validateBean>
+            </h:form>
+            <br/>
+            <h:outputLink value="index.xhtml" style="color: royalblue">
+                Вернуться на главную страницу
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

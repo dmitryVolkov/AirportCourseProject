@@ -34,22 +34,6 @@
                 <h1 style="position: relative; left: 300px;">Аэропорт<a>№148</a></h1>
                 <div class="slogan">VladimirAir</div>
             </div>
-            <h:form>
-                <ui:fragment rendered="#{authBackingBean.userOnline == null}">
-                    <h:panelGrid columns="3" style="background-color: aquamarine;
-                                                border: 1px;position: relative; right: 1050px">
-                        <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
-                                       value="Логин"/>
-                        <p:inputText value="#{authBackingBean.login}"/>
-                        <h:commandButton value="Войти" action="#{authBackingBean.loginToSite()}"
-                                         styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"/>
-                        <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
-                                       value="Пароль"/>
-                        <p:password value="#{authBackingBean.password}"/>
-                        <h:outputLink value="../register.xhtml">Регистрация</h:outputLink>
-                    </h:panelGrid>
-                </ui:fragment>
-            </h:form>
             <div id="menubar">
                 <ul id="menu">
                     <li class="current"><a jsfc="h:outputLink" value="../main/index.xhtml">Домашняя</a></li>

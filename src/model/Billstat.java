@@ -4,7 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
+
+/**
+ * The persistent class for the billstat database table.
+ * 
+ */
 @Entity
+@NamedQuery(name="Billstat.findAll", query="SELECT b FROM Billstat b")
 public class Billstat implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,12 +32,21 @@ public class Billstat implements Serializable {
 	@Column(name="ticket_id")
 	private int ticketId;
 
+	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="user_id")
 	private User user;
 
 	public Billstat() {
 	}
+
+    public Billstat(int countOfMoney, Date currentDate, String number, String operation,
+                    int sum){
+        this.countOfMoney = countOfMoney;
+        this.currentDate = currentDate;
+        this.number = number;
+        this.operation = operation;
+        this.sum = sum;
+    }
 
 	public int getId() {
 		return this.id;

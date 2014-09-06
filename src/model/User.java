@@ -6,14 +6,18 @@ import java.util.Date;
 import java.util.List;
 
 
+/**
+ * The persistent class for the user database table.
+ * 
+ */
 @Entity
+@Table(name="users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_id")
-	private int userId;
+	private int user_id;
 
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
@@ -35,110 +39,105 @@ public class User implements Serializable {
 
 	private String username;
 
+    public User(Date dateOfBirth, String email, String firstName, String lastName, String middleName, String password, String phonenumber, String username) {
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.password = password;
+        this.phonenumber = phonenumber;
+        this.username = username;
+    }
+
+    //bi-directional many-to-one association to Billstat
 	@OneToMany(mappedBy="user")
 	private List<Billstat> billstats;
 
-	@ManyToMany
-	@JoinTable(
-		name="user_groups"
-		, joinColumns={
-			@JoinColumn(name="user_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="group_id")
-			}
-		)
+	//bi-directional many-to-many association to Group
+	@ManyToMany(mappedBy="users")
 	private List<Group> groups;
 
 	public User() {
 	}
 
-	public int getUserId() {
-		return this.userId;
-	}
+    public int getUser_id() {
+        return user_id;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
-	public Date getDateOfBirth() {
-		return this.dateOfBirth;
-	}
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getFirstName() {
-		return this.firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return this.lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getMiddleName() {
-		return this.middleName;
-	}
+    public String getMiddleName() {
+        return middleName;
+    }
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPhonenumber() {
-		return this.phonenumber;
-	}
+    public String getPhonenumber() {
+        return phonenumber;
+    }
 
-	public void setPhonenumber(String phonenumber) {
-		this.phonenumber = phonenumber;
-	}
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
-	public String getUsername() {
-		return this.username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public List<Billstat> getBillstats() {
-		return this.billstats;
-	}
+    public List<Billstat> getBillstats() {
+        return billstats;
+    }
 
-	public void setBillstats(List<Billstat> billstats) {
-		this.billstats = billstats;
-	}
-
-	public List<Group> getGroups() {
-		return this.groups;
-	}
-
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
-	}
-
+    public List<Group> getGroups() {
+        return groups;
+    }
 }

@@ -23,22 +23,22 @@
     <ui:composition template="loginMain.xhtml">
         <ui:define name="content">
             <ui:fragment rendered="#{authBackingBean.userOnline == null}">
-            <h:form>
+                <h:form>
                     <h:panelGrid columns="2" style="background-color: aquamarine;
                                                     border: 1px;position: relative;
                                                     left: 500px;"
                                  styleClass="ui-panelgrid ui-widget">
                         <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
                                        for="j_username" value="Логин" />
-                        <p:inputText name="j_username" value="#{authBackingBean.login}" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all" />
+                        <p:inputText id="j_username" value="#{authBackingBean.login}" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all" />
                         <h:outputLabel styleClass="ui-outputlabel ui-widget" style="background-color: greenyellow"
                                        for="j_password" value="Пароль" />
-                        <p:password value="#{authBackingBean.password}" name="j_password" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all"/>
+                        <p:password id="j_password" value="#{authBackingBean.password}" style="ui-inputfield: ui-inputtext ui-widget ui-state-default ui-corner-all"/>
                         <h:outputText value="" />
                         <h:commandButton name="submit" value="Авторизоваться" action="#{authBackingBean.loginToSite()}"/>
                     </h:panelGrid>
                 </h:form>
-                <h:outputLink value="../register.xhtml" style="position: relative; left: 500px; color: red">
+                <h:outputLink value="../main/register.xhtml" style="position: relative; left: 500px; color: red">
                     Зарегистрироваться
                 </h:outputLink>
                 <br/>

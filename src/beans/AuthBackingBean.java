@@ -7,16 +7,15 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 @ManagedBean
 @SessionScoped
-public class AuthBackingBean {
+public class AuthBackingBean implements Serializable {
 
     private static Logger log = Logger.getLogger(AuthBackingBean.class.getName());
 

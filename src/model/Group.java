@@ -5,14 +5,18 @@ import javax.persistence.*;
 import java.util.List;
 
 
+/**
+ * The persistent class for the role database table.
+ * 
+ */
 @Entity
+@Table(name="groups")
 public class Group implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="group_id")
-	private int groupId;
+	private int group_id;
 
 	@Column(name="group_desc")
 	private String groupDesc;
@@ -20,42 +24,47 @@ public class Group implements Serializable {
 	@Column(name="group_name")
 	private String groupName;
 
-	@ManyToMany(mappedBy="groups")
+	//bi-directional many-to-many association to User
+	@ManyToMany
+	@JoinTable(
+		name="user_groups"
+		, joinColumns={
+			@JoinColumn(name="group_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="user_id")
+			}
+		)
 	private List<User> users;
 
 	public Group() {
 	}
 
-	public int getGroupId() {
-		return this.groupId;
-	}
+    public List<User> getUsers() {
+        return users;
+    }
 
-	public void setGroupId(int groupId) {
-		this.groupId = groupId;
-	}
+    public int getGroup_id() {
+        return group_id;
+    }
 
-	public String getGroupDesc() {
-		return this.groupDesc;
-	}
+    public void setGroup_id(int group_id) {
+        this.group_id = group_id;
+    }
 
-	public void setGroupDesc(String groupDesc) {
-		this.groupDesc = groupDesc;
-	}
+    public String getGroupDesc() {
+        return groupDesc;
+    }
 
-	public String getGroupName() {
-		return this.groupName;
-	}
+    public void setGroupDesc(String groupDesc) {
+        this.groupDesc = groupDesc;
+    }
 
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
+    public String getGroupName() {
+        return groupName;
+    }
 
-	public List<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 }
