@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Planes page</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="adminMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Список самолетов" style="color: red"/></h3>
+            <h:form>
+                <p:dataTable value="#{planeBean.listOfPlanes}" var="plane" style="width: 95%">
+                    <p:column headerText="Модель">
+                        <p:outputLabel value="#{plane.model}"/>
+                    </p:column>
+                    <p:column headerText="Год выпуска">
+                        <p:outputLabel value="#{plane.year}"/>
+                    </p:column>
+                    <p:column headerText="Количество рядов">
+                        <p:outputLabel value="#{plane.countOfRows}"/>
+                    </p:column>
+                    <p:column headerText="Количество мест в ряду">
+                        <p:outputLabel value="#{plane.placesInRow}"/>
+                    </p:column>
+                    <p:column style="width: 10%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         action="#{planeBean.goToShowPlane(plane)}" value="Просмотр информации"/>
+                    </p:column>
+                    <p:column style="width: 7%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         value="Удалить" action="#{planeBean.goToDeletingPlane(plane)}"/>
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                <h:outputLink value="addPlane.xhtml" style="color: royalblue">
+                    Добавить самолёт
+                </h:outputLink>
+                <br/>
+                <h:outputLink value="adminPage.xhtml" style="color: royalblue">
+                    Вернуться назад
+                </h:outputLink>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

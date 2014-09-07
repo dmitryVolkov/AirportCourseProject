@@ -27,7 +27,14 @@ public class Plane implements Serializable {
 	public Plane() {
 	}
 
-	public int getId() {
+    public Plane(String model, int year, int countOfRows, int placesInRow) {
+        this.countOfRows = countOfRows;
+        this.model = model;
+        this.placesInRow = placesInRow;
+        this.year = year;
+    }
+
+    public int getId() {
 		return this.id;
 	}
 

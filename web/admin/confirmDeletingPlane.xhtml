@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Confirm Deleting Plane</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="adminMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Подтвердите удаление самолета" style="color: red"/></h3>
+            <br/>
+            <h:form>
+                <p:panelGrid columns="2" style="border:1px">
+                    <p:outputLabel value="Модель"/>
+                    <p:outputLabel value="#{planeBean.selectedPlane.model}"/>
+
+                    <p:outputLabel value="Год"/>
+                    <p:outputLabel value="#{planeBean.selectedPlane.year}"/>
+
+                    <p:outputLabel value="Количество рядов"/>
+                    <p:outputLabel value="#{planeBean.selectedPlane.countOfRows}"/>
+
+                    <p:outputLabel value="Количество мест в ряду"/>
+                    <p:outputLabel value="#{planeBean.selectedPlane.placesInRow}"/>
+                </p:panelGrid>
+                <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                 value="Удалить самолёт" action="#{planeBean.confirmDeletePlane}"/>
+            </h:form>
+            <br/>
+            <h:outputLink value="showPlanes.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>
