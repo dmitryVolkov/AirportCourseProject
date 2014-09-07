@@ -17,6 +17,7 @@ public class CommonEJBBean implements CommonEJBBeanLocal {
 
     public CommonEJBBean(){}
 
+    @Override
     public Group getGroupByTitle(String title){
         CriteriaQuery<Group> criteriaQuery = emU.getCriteriaBuilder().createQuery(Group.class);
         Root roleRoot = criteriaQuery.from(Group.class);

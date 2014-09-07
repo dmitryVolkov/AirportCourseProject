@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Add Pilot</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="adminMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Добавить пилота" style="color: red"/></h3>
+            <h:form>
+                <p:messages/>
+                <p:panelGrid columns="2" style="border:1px">
+                    <p:outputLabel value="Фамилия"/>
+                    <p:inputText value="#{pilotBean.surname}" id="surname"/>
+
+                    <p:outputLabel value="Имя"/>
+                    <p:inputText value="#{pilotBean.name}" id="name"/>
+
+                    <p:outputLabel value="Отчество"/>
+                    <p:inputText value="#{pilotBean.patronymic}" id="patronymic"/>
+
+                    <p:outputLabel value="Номер телефона"/>
+                    <p:inputText value="#{pilotBean.phonenumber}" id="phonenumber"/>
+
+                    <p:outputLabel value="Адрес"/>
+                    <p:inputTextarea rows="2" value="#{pilotBean.address}" id="address"/>
+
+
+                    <p:outputLabel value="Категория"/>
+                    <p:selectOneMenu value="#{pilotBean.selectedCategory}">
+                        <f:selectItems value="#{pilotBean.categories}" var="ctgr"
+                                       itemValue="#{ctgr.intValue()}" itemLabel="#{ctgr.intValue()} категория"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                 value="Добавить пилота" action="#{pilotBean.addPilot()}"/>
+            </h:form>
+            <br/>
+            <h:outputLink value="adminPage.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

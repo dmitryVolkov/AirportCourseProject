@@ -4,9 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Main Page</title>
+    <title>Admin Page</title>
     <meta name="description" content="website description" />
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -17,14 +18,9 @@
 <h:body>
     <ui:composition template="adminMain.xhtml">
         <ui:define name="content">
-            <h:outputText value="AdminPage"/>
-            <h:outputText value="AdminPage"/>
-            <h:outputText value="AdminPage"/>
-            <h:outputText value="AdminPage"/>
-            <h:outputText value="AdminPage"/>
-            <h:outputText value="AdminPage"/>
-            <h:outputText value="AdminPage"/>
-            <h:outputText value="AdminPage"/>
+            <h:form>
+                <p:commandLink value="Просмотр пилотов" action="showPilots" style="color: royalblue"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

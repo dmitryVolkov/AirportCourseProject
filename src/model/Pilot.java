@@ -22,13 +22,24 @@ public class Pilot implements Serializable {
 
 	private String surname;
 
+    private int category;
+
 	@OneToMany(mappedBy="pilot")
 	private List<Flight> flights;
 
 	public Pilot() {
 	}
 
-	public int getId() {
+    public Pilot(String surname, String name, String patronymic, String phonenumber, String address, int category) {
+        this.surname = surname;
+        this.address = address;
+        this.name = name;
+        this.patronymic = patronymic;
+        this.phonenumber = phonenumber;
+        this.category = category;
+    }
+
+    public int getId() {
 		return this.id;
 	}
 
@@ -83,4 +94,12 @@ public class Pilot implements Serializable {
 	public void setFlights(List<Flight> flights) {
 		this.flights = flights;
 	}
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
 }

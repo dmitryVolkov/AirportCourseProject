@@ -109,6 +109,10 @@ public class AuthEJBBean implements AuthEJBBeanLocal, Serializable {
         emU.merge(user);
     }
 
+    /**
+     * Сгенерировать номер счёта
+     * @return номер счёта
+     */
     private int generateNumberOfBill(){
         int low = 100000000;
         int high = 999999999;
