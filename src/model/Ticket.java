@@ -24,9 +24,6 @@ public class Ticket implements Serializable {
 	@ManyToOne
 	private Flight flight;
 
-	@ManyToOne
-	private Category category;
-
 	public Ticket() {
 	}
 
@@ -77,13 +74,4 @@ public class Ticket implements Serializable {
 	public void setFlight(Flight flight) {
 		this.flight = flight;
 	}
-
-	public Category getCategory() {
-		return this.category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 }

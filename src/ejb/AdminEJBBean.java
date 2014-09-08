@@ -2,6 +2,7 @@ package ejb;
 
 import model.Pilot;
 import model.Plane;
+import model.Point;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,6 +31,12 @@ public class AdminEJBBean implements AdminEJBLocal {
     }
 
     @Override
+    public List<Point> getListOfPoints(){
+        Query query = emA.createQuery("SELECT p FROM Point p");
+        return query.getResultList();
+    }
+
+    @Override
     public void addPilot(Pilot pilot){
         emA.persist(pilot);
     }
@@ -37,6 +44,16 @@ public class AdminEJBBean implements AdminEJBLocal {
     @Override
     public void addPlane(Plane plane){
         emA.persist(plane);
+    }
+
+    @Override
+    public void addPoint(Point point){
+        emA.persist(point);
+    }
+
+    @Override
+    public void editPoint(Point point){
+        emA.merge(point);
     }
 
     @Override
@@ -49,5 +66,11 @@ public class AdminEJBBean implements AdminEJBLocal {
     public void deletePlane(Plane plane){
         plane = emA.merge(plane);
         emA.remove(plane);
+    }
+
+    @Override
+    public void deletePoint(Point point){
+        point = emA.merge(point);
+        emA.remove(point);
     }
 }

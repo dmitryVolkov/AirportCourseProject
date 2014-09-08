@@ -2,10 +2,14 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
+/**
+ * The persistent class for the route database table.
+ * 
+ */
 @Entity
+@NamedQuery(name="Route.findAll", query="SELECT r FROM Route r")
 public class Route implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -15,14 +19,17 @@ public class Route implements Serializable {
 
 	private int distance;
 
-	private String pointOfArrival;
-
-	private String pointOfDeparture;
-
 	private String title;
 
-	@OneToMany(mappedBy="route")
-	private List<Flight> flights;
+	//bi-directional many-to-one association to Point
+	@ManyToOne
+	@JoinColumn(name="pointOfDeparture_id")
+	private Point point1;
+
+	//bi-directional many-to-one association to Point
+	@ManyToOne
+	@JoinColumn(name="pointOfArrival_id")
+	private Point point2;
 
 	public Route() {
 	}
@@ -43,22 +50,6 @@ public class Route implements Serializable {
 		this.distance = distance;
 	}
 
-	public String getPointOfArrival() {
-		return this.pointOfArrival;
-	}
-
-	public void setPointOfArrival(String pointOfArrival) {
-		this.pointOfArrival = pointOfArrival;
-	}
-
-	public String getPointOfDeparture() {
-		return this.pointOfDeparture;
-	}
-
-	public void setPointOfDeparture(String pointOfDeparture) {
-		this.pointOfDeparture = pointOfDeparture;
-	}
-
 	public String getTitle() {
 		return this.title;
 	}
@@ -67,11 +58,20 @@ public class Route implements Serializable {
 		this.title = title;
 	}
 
-	public List<Flight> getFlights() {
-		return this.flights;
+	public Point getPoint1() {
+		return this.point1;
 	}
 
-	public void setFlights(List<Flight> flights) {
-		this.flights = flights;
+	public void setPoint1(Point point1) {
+		this.point1 = point1;
 	}
+
+	public Point getPoint2() {
+		return this.point2;
+	}
+
+	public void setPoint2(Point point2) {
+		this.point2 = point2;
+	}
+
 }

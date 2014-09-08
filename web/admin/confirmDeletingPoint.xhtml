@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Confirm Deleting Point</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="adminMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Подтвердите удаление пункта" style="color: red"/></h3>
+            <br/>
+            <h:form>
+                <p:panelGrid columns="2" style="border:1px">
+                    <p:outputLabel value="Страна"/>
+                    <p:outputLabel value="#{pointBean.selectedPoint.country}"/>
+
+                    <p:outputLabel value="Город"/>
+                    <p:outputLabel value="#{pointBean.selectedPoint.city}"/>
+                </p:panelGrid>
+                <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                 value="Удалить пункт" action="#{pointBean.confirmDeletePoint()}"/>
+            </h:form>
+            <br/>
+            <h:outputLink value="showPoints.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

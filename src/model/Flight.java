@@ -20,9 +20,6 @@ public class Flight implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeOfDeparture;
 
-	@OneToMany(mappedBy="flight")
-	private List<Category> categories;
-
 	@ManyToOne
 	private Pilot pilot;
 
@@ -60,14 +57,6 @@ public class Flight implements Serializable {
 
 	public void setTimeOfDeparture(Date timeOfDeparture) {
 		this.timeOfDeparture = timeOfDeparture;
-	}
-
-	public List<Category> getCategories() {
-		return this.categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
 	}
 
 	public Pilot getPilot() {
