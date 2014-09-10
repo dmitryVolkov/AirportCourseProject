@@ -8,6 +8,7 @@
         <class>model.Route</class>
         <class>model.Ticket</class>
         <class>model.Point</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
     </persistence-unit>
     <persistence-unit name="AirusersPersistenceUnit">
         <jta-data-source>jdbc/airusers</jta-data-source>

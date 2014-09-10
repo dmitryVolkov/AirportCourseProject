@@ -34,7 +34,14 @@ public class Route implements Serializable {
 	public Route() {
 	}
 
-	public int getId() {
+    public Route(String title, Point point1, Point point2, int distance) {
+        this.distance = distance;
+        this.title = title;
+        this.point1 = point1;
+        this.point2 = point2;
+    }
+
+    public int getId() {
 		return this.id;
 	}
 

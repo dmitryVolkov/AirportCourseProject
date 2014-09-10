@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Add Route</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="adminMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Добавить маршрут" style="color: red"/></h3>
+            <h:form>
+                <p:messages/>
+                <p:panelGrid columns="2" style="border:1px">
+                    <p:outputLabel value="Название"/>
+                    <p:inputText value="#{routeBean.title}" id="title"/>
+
+                    <p:outputLabel value="Дистанция"/>
+                    <p:inputText value="#{routeBean.distance}" id="distance"/>
+
+                    <p:outputLabel value="Пункт отправления"/>
+                    <p:selectOneMenu value="#{routeBean.pointOfDepartureId}" id="departurePoint">
+                        <f:selectItems value="#{routeBean.listOfPoints}" var="point"
+                                       itemValue="#{point.id}" itemLabel="#{point.country}, #{point.city}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Пункт назначения"/>
+                    <p:selectOneMenu value="#{routeBean.pointOfArrivalId}" id="arrivalPoint">
+                        <f:selectItems value="#{routeBean.listOfPoints}" var="point"
+                                       itemValue="#{point.id}" itemLabel="#{point.country}, #{point.city}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                 value="Добавить маршрут" action="#{routeBean.addRoute()}"/>
+            </h:form>
+            <br/>
+            <h:outputLink value="showRoutes.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

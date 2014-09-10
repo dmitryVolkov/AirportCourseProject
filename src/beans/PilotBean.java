@@ -1,9 +1,7 @@
 package beans;
 
-import ejb.AdminEJBLocal;
+import ejb.PilotEJBBeanLocal;
 import model.Pilot;
-
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -17,7 +15,7 @@ import java.util.List;
 public class PilotBean implements Serializable {
 
     @EJB
-    private AdminEJBLocal adminEJBBean;
+    private PilotEJBBeanLocal pilotEJBBean;
 
     private List<Pilot> listOfPilots;
 
@@ -49,13 +47,13 @@ public class PilotBean implements Serializable {
     }
 
     public List<Pilot> getListOfPilots() {
-        listOfPilots = adminEJBBean.getListOfPilots();
+        listOfPilots = pilotEJBBean.getListOfPilots();
         return listOfPilots;
     }
 
     public String addPilot(){
         Pilot pilot = new Pilot(surname, name, patronymic, phonenumber, address, selectedCategory);
-        adminEJBBean.addPilot(pilot);
+        pilotEJBBean.addPilot(pilot);
         return "showPilots";
     }
 
@@ -70,7 +68,7 @@ public class PilotBean implements Serializable {
     }
 
     public String confirmDeletePilot(){
-        adminEJBBean.deletePilot(selectedPilot);
+        pilotEJBBean.deletePilot(selectedPilot);
         return "showPilots";
     }
 

@@ -1,8 +1,7 @@
 package beans;
 
-import ejb.AdminEJBLocal;
+import ejb.PlaneEJBBeanLocal;
 import model.Plane;
-
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -15,7 +14,7 @@ import java.util.List;
 public class PlaneBean implements Serializable {
 
     @EJB
-    private AdminEJBLocal adminEJBBean;
+    private PlaneEJBBeanLocal planeEJBBean;
 
     private List<Plane> listOfPlanes;
 
@@ -31,13 +30,13 @@ public class PlaneBean implements Serializable {
     private int placesInRow;
 
     public List<Plane> getListOfPlanes() {
-        listOfPlanes = adminEJBBean.getListOfPlanes();
+        listOfPlanes = planeEJBBean.getListOfPlanes();
         return listOfPlanes;
     }
 
     public String addPlane(){
         Plane plane = new Plane(model, year, countOfRows, placesInRow);
-        adminEJBBean.addPlane(plane);
+        planeEJBBean.addPlane(plane);
         return "showPlanes";
     }
 
@@ -52,7 +51,7 @@ public class PlaneBean implements Serializable {
     }
 
     public String confirmDeletePlane(){
-        adminEJBBean.deletePlane(selectedPlane);
+        planeEJBBean.deletePlane(selectedPlane);
         return "showPlanes";
     }
 

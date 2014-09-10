@@ -1,7 +1,6 @@
 package beans;
 
-import ejb.AdminEJBLocal;
-import model.Plane;
+import ejb.PointEJBBeanLocal;
 import model.Point;
 
 import javax.ejb.EJB;
@@ -16,7 +15,7 @@ import java.util.List;
 public class PointBean implements Serializable {
 
     @EJB
-    private AdminEJBLocal adminEJBBean;
+    private PointEJBBeanLocal pointEJBBean;
 
     private List<Point> listOfPoints;
 
@@ -29,13 +28,13 @@ public class PointBean implements Serializable {
     private String city;
 
     public List<Point> getListOfPoints() {
-        listOfPoints = adminEJBBean.getListOfPoints();
+        listOfPoints = pointEJBBean.getListOfPoints();
         return listOfPoints;
     }
 
     public String addPoint(){
         Point point = new Point(country, city);
-        adminEJBBean.addPoint(point);
+        pointEJBBean.addPoint(point);
         return "showPoints";
     }
 
@@ -54,12 +53,12 @@ public class PointBean implements Serializable {
     public String editPoint(){
         selectedPoint.setCountry(country);
         selectedPoint.setCity(city);
-        adminEJBBean.editPoint(selectedPoint);
+        pointEJBBean.editPoint(selectedPoint);
         return "showPoints";
     }
 
     public String confirmDeletePoint(){
-        adminEJBBean.deletePoint(selectedPoint);
+        pointEJBBean.deletePoint(selectedPoint);
         return "showPoints";
     }
 
