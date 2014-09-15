@@ -1,7 +1,7 @@
 package ejb;
 
-import model.Plane;
 import model.Point;
+import views.PointEJBBeanLocal;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

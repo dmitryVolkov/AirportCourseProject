@@ -1,17 +1,16 @@
 package ejb;
 
-import model.Pilot;
 import model.Plane;
+import views.PlaneEJBBeanLocal;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
-public class PlaneEJBBean implements PlaneEJBBeanLocal{
+public class PlaneEJBBean implements PlaneEJBBeanLocal {
 
     @PersistenceContext(name = "persistence/airport", unitName= "AirportPersistenceUnit")
     private EntityManager emA;

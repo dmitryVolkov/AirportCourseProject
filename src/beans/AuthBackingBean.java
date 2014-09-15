@@ -1,6 +1,6 @@
 package beans;
 
-import ejb.AuthEJBBeanLocal;
+import views.AuthEJBBeanLocal;
 import model.User;
 
 import javax.ejb.EJB;

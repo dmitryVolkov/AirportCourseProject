@@ -1,6 +1,6 @@
 package beans;
 
-import ejb.PointEJBBeanLocal;
+import views.PointEJBBeanLocal;
 import model.Point;
 
 import javax.ejb.EJB;

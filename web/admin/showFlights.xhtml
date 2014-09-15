@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Flights Page</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="adminMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Список полетов" style="color: red"/></h3>
+            <h:form>
+                <p:dataTable value="#{flightBean.listOfFlights}" var="flight" style="width: 95%">
+                    <p:column headerText="Время отправления">
+                        <p:outputLabel value="#{flightBean.convertJavaUtilDate(flight.timeOfDeparture)}"/>
+                    </p:column>
+
+                    <p:column headerText="Время прибытия">
+                        <p:outputLabel value="#{flightBean.convertJavaUtilDate(flight.timeOfArrival)}"/>
+                    </p:column>
+
+                    <p:column headerText="Пилот">
+                        <p:outputLabel value="#{flight.pilot.surname} #{flight.pilot.name} #{flight.pilot.patronymic}"/>
+                    </p:column>
+
+                    <p:column headerText="Самолет">
+                        <p:outputLabel value="#{flight.plane.model} #{flight.plane.year}"/>
+                    </p:column>
+
+                    <p:column headerText="Название маршрута">
+                        <p:outputLabel value="#{flight.route.title}"/>
+                    </p:column>
+
+                    <p:column style="width: 10%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         action="#{flightBean.goToShowFlight(flight)}" value="Просмотр информации"/>
+                    </p:column>
+
+                    <p:column style="width: 10%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         action="#{flightBean.goToEditFlight(flight)}" value="Редактировать"/>
+                    </p:column>
+
+                    <p:column style="width: 7%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         action="#{flightBean.goToDeletingFlight(flight)}" value="Удалить"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <br/>
+            <h:outputLink value="addFlight.xhtml" style="color: royalblue">
+                Добавить полет
+            </h:outputLink>
+            <br/>
+            <h:outputLink value="adminPage.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

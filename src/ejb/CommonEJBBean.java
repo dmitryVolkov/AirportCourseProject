@@ -1,6 +1,7 @@
 package ejb;
 
 import model.Group;
+import views.CommonEJBBeanLocal;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

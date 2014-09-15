@@ -1,4 +1,4 @@
-package ejb;
+package views;
 
 import model.Point;
 

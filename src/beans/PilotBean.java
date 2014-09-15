@@ -1,6 +1,6 @@
 package beans;
 
-import ejb.PilotEJBBeanLocal;
+import views.PilotEJBBeanLocal;
 import model.Pilot;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;

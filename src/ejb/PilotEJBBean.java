@@ -1,6 +1,7 @@
 package ejb;
 
 import model.Pilot;
+import views.PilotEJBBeanLocal;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

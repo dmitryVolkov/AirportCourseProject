@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Edit Flight</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="adminMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Редактировать данные о полете" style="color: red"/></h3>
+            <h:form>
+                <p:messages/>
+                <p:panelGrid columns="2" style="border:1px">
+                    <p:outputLabel value="Время отправления"/>
+                    <p:inputText value="#{flightBean.timeOfDeparture}" id="timeOfDeparture"
+                                 converterMessage="Время отправления должно соответствовать шаблону dd.MM.yyyy HH:mm:ss">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Время прибытия"/>
+                    <p:inputText value="#{flightBean.timeOfArrival}" id="timeOfArrival"
+                                 converterMessage="Время прибытия должно соответствовать шаблону dd.MM.yyyy HH:mm:ss">
+                        <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Пилот"/>
+                    <p:selectOneMenu value="#{flightBean.selectedPilotId}" id="selectedPilotId">
+                        <f:selectItems value="#{pilotBean.listOfPilots}" var="pilot"
+                                       itemValue="#{pilot.id}" itemLabel="#{pilot.surname} #{pilot.name} #{pilot.patronymic}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Самолет"/>
+                    <p:selectOneMenu value="#{flightBean.selectedPlaneId}" id="selectedPlaneId">
+                        <f:selectItems value="#{planeBean.listOfPlanes}" var="plane"
+                                       itemValue="#{plane.id}" itemLabel="#{plane.model} #{plane.year}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Маршрут"/>
+                    <p:selectOneMenu value="#{flightBean.selectedRouteId}" id="selectedRouteId">
+                        <f:selectItems value="#{routeBean.listOfRoutes}" var="route"
+                                       itemValue="#{route.id}" itemLabel="#{route.title}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                 value="Редактировать маршрут" action="#{flightBean.editFlight()}"/>
+            </h:form>
+            <br/>
+            <h:outputLink value="showFlights.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

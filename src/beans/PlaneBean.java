@@ -1,6 +1,6 @@
 package beans;
 
-import ejb.PlaneEJBBeanLocal;
+import views.PlaneEJBBeanLocal;
 import model.Plane;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;

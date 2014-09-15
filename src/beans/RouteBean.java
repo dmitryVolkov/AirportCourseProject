@@ -1,7 +1,6 @@
 package beans;
 
-import ejb.PointEJBBeanLocal;
-import ejb.RouteEJBBeanLocal;
+import views.RouteEJBBeanLocal;
 import model.Point;
 import model.Route;
 

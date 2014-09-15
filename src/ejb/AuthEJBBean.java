@@ -3,6 +3,8 @@ package ejb;
 import model.Billstat;
 import model.Group;
 import model.User;
+import views.AuthEJBBeanLocal;
+import views.CommonEJBBeanLocal;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

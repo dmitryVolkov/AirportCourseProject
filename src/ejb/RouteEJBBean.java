@@ -2,6 +2,7 @@ package ejb;
 
 import model.Point;
 import model.Route;
+import views.RouteEJBBeanLocal;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
