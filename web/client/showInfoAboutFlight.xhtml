@@ -6,8 +6,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>Show Info About Flight</title>
@@ -19,44 +19,40 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="adminMain.xhtml">
+    <ui:composition template="clientMain.xhtml">
         <ui:define name="content">
             <h3><h:outputLabel value="Просмотр информации о полёте" style="color: red"/></h3>
             <br/>
             <p:panelGrid columns="2" style="border:1px">
                 <p:outputLabel value="Время отправления"/>
-                <p:outputLabel value="#{flightBean.convertJavaUtilDate(flightBean.selectedFlight.timeOfDeparture)}"/>
+                <p:outputLabel value="#{flightBean.convertJavaUtilDate(clientBean.selectedFlight.timeOfDeparture)}"/>
 
                 <p:outputLabel value="Время прибытия"/>
-                <p:outputLabel value="#{flightBean.convertJavaUtilDate(flightBean.selectedFlight.timeOfArrival)}"/>
+                <p:outputLabel value="#{flightBean.convertJavaUtilDate(clientBean.selectedFlight.timeOfArrival)}"/>
 
                 <p:outputLabel value="Точка отправления"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.route.point1.country} - #{flightBean.selectedFlight.route.point2.city}"/>
+                <p:outputLabel value="#{clientBean.selectedFlight.route.point1.country} - #{clientBean.selectedFlight.route.point2.city}"/>
 
                 <p:outputLabel value="Точка прибытия"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.route.point2.country} - #{flightBean.selectedFlight.route.point2.city}"/>
+                <p:outputLabel value="#{clientBean.selectedFlight.route.point2.country} - #{clientBean.selectedFlight.route.point2.city}"/>
 
                 <p:outputLabel value="Дистанция"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.route.distance}"/>
-
-                <p:outputLabel value="Пилот"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.pilot.surname} #{flightBean.selectedFlight.pilot.name}
-                               #{flightBean.selectedFlight.pilot.patronymic}"/>
+                <p:outputLabel value="#{clientBean.selectedFlight.route.distance}"/>
 
                 <p:outputLabel value="Модель самолета"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.plane.model} #{flightBean.selectedFlight.plane.year} года"/>
+                <p:outputLabel value="#{clientBean.selectedFlight.plane.model} #{clientBean.selectedFlight.plane.year} года"/>
 
                 <p:outputLabel value="Количество рядов"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.plane.countOfRows}"/>
+                <p:outputLabel value="#{clientBean.selectedFlight.plane.countOfRows}"/>
 
                 <p:outputLabel value="Количество мест в ряду"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.plane.placesInRow}"/>
+                <p:outputLabel value="#{clientBean.selectedFlight.plane.placesInRow}"/>
 
                 <p:outputLabel value="Цена"/>
-                <p:outputLabel value="#{flightBean.selectedFlight.price}"/>
+                <p:outputLabel value="#{clientBean.selectedFlight.price}"/>
             </p:panelGrid>
             <br/>
-            <h:outputLink value="showFlights.xhtml" style="color: royalblue">
+            <h:outputLink value="clientPage.xhtml" style="color: royalblue">
                 Вернуться назад
             </h:outputLink>
         </ui:define>

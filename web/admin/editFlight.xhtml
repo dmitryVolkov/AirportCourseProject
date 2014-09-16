@@ -55,6 +55,11 @@
                         <f:selectItems value="#{routeBean.listOfRoutes}" var="route"
                                        itemValue="#{route.id}" itemLabel="#{route.title}"/>
                     </p:selectOneMenu>
+
+                    <p:outputLabel value="Цена"/>
+                    <p:inputText value="#{flightBean.price}" id="price" validatorMessage="Цена может быть от 0 до 150000">
+                        <f:validateLongRange minimum="0" maximum="150000"/>
+                    </p:inputText>
                 </p:panelGrid>
                 <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                                  value="Редактировать маршрут" action="#{flightBean.editFlight()}"/>

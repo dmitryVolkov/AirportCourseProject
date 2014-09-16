@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Main Page</title>
     <meta name="description" content="website description" />
@@ -17,14 +18,42 @@
 <h:body>
     <ui:composition template="clientMain.xhtml">
         <ui:define name="content">
-            <h:outputText value="ClientPage"/>
-            <h:outputText value="ClientPage"/>
-            <h:outputText value="ClientPage"/>
-            <h:outputText value="ClientPage"/>
-            <h:outputText value="ClientPage"/>
-            <h:outputText value="ClientPage"/>
-            <h:outputText value="ClientPage"/>
-            <h:outputText value="ClientPage"/>
+            <h3><h:outputLabel value="Список полетов" style="color: red"/></h3>
+            <h:form>
+                <p:dataTable value="#{flightBean.listOfFlights}" var="flight" style="width: 95%">
+                    <p:column headerText="Время отправления">
+                        <p:outputLabel value="#{flightBean.convertJavaUtilDate(flight.timeOfDeparture)}"/>
+                    </p:column>
+
+                    <p:column headerText="Время прибытия">
+                        <p:outputLabel value="#{flightBean.convertJavaUtilDate(flight.timeOfArrival)}"/>
+                    </p:column>
+
+                    <p:column headerText="Самолет">
+                        <p:outputLabel value="#{flight.plane.model} #{flight.plane.year}"/>
+                    </p:column>
+
+                    <p:column headerText="Название маршрута">
+                        <p:outputLabel value="#{flight.route.title}"/>
+                    </p:column>
+
+                    <p:column headerText="Цена полета">
+                        <p:outputLabel value="#{flight.price}"/>
+                    </p:column>
+
+                    <p:column style="width: 10%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         action="#{clientBean.goToShowInfoAboutFlight(flight)}" value="Просмотр информации"/>
+                    </p:column>
+
+                    <p:column style="width: 10%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         value="Просмотр мест" action="#{clientBean.goToShowPlaces(flight)}"  actionListener="#{clientBean.userIdListener}">
+                            <f:attribute name="userid" value="#{authBackingBean.userOnline.user_id}"/>
+                        </h:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

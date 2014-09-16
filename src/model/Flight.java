@@ -29,6 +29,8 @@ public class Flight implements Serializable {
 	@ManyToOne
 	private Plane plane;
 
+    private int price;
+
 	@OneToMany(mappedBy="flight")
 	private List<Ticket> tickets;
 
@@ -90,4 +92,12 @@ public class Flight implements Serializable {
 	public void setTickets(List<Ticket> tickets) {
 		this.tickets = tickets;
 	}
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

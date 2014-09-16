@@ -329,3 +329,13 @@ table tr td
 { background: #FBFBFB;
   color: #111;
   border-top: 1px solid #FFF;}
+
+.button-small
+{
+    padding: 1.4em 1.2em;
+    border-radius: 5px;
+    font-size: 0.7em;
+    height: 26px;
+    width: 10px;
+    text-align: center;
+}

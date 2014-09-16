@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Show Places</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <h:outputStylesheet library="css" name="style.css"  />
+    <ui:composition template="clientMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Информация о местах" style="color: red"/></h3>
+            <br/>
+            <c:forEach var="row" begin="0" end="#{clientBean.selectedFlight.plane.countOfRows - 1}" varStatus="rowStatus">
+                <p>
+                    <h:outputText value="Ряд #{rowStatus.index + 1}"/>
+                    <c:forEach var="place" begin="0" end="#{clientBean.selectedFlight.plane.placesInRow - 1}" varStatus="placeStatus">
+                        <c:if test="#{clientBean.checkPlaceOnBusyOrReserve(rowStatus.index + 1,placeStatus.index + 1) == 2}">
+                            <h:commandButton style="color: red; border-color: red; border-width: 5px;"
+                                             styleClass="button-small" value="#{placeStatus.index + 1}"/>
+                        </c:if>
+                        <c:if test="#{clientBean.checkPlaceOnBusyOrReserve(rowStatus.index + 1,placeStatus.index + 1) == 1}">
+                            <h:commandButton style="color: blue; border-color: blue; border-width: 5px;"
+                                             styleClass="button-small" value="#{placeStatus.index + 1}"/>
+                        </c:if>
+                        <c:if test="#{clientBean.checkPlaceOnBusyOrReserve(rowStatus.index + 1,placeStatus.index + 1) == 0}">
+                            <h:commandButton styleClass="button-small" value="#{placeStatus.index + 1}"/>
+                        </c:if>
+                    </c:forEach>
+                </p>
+            </c:forEach>
+            <br/>
+            <br/>
+            <h:form>
+                <f:validateBean>
+                    <f:event type="postValidate" listener="#{clientBean.validateOnBusyOrReserve}"/>
+                    <f:event type="postValidate" listener="#{clientBean.validateOnCountsForUser}"/>
+                    <p:messages/>
+                    <p:panelGrid columns="2" style="border:1px">
+                        <p:outputLabel value="Ряд"/>
+                        <p:inputText value="#{clientBean.selectedRow}" id="row"
+                                     validatorMessage="Ряд должен быть от 1 до #{clientBean.selectedFlight.plane.countOfRows}"
+                                     converterMessage="Ряд должен быть числом">
+                            <f:validateLongRange minimum="1" maximum="#{clientBean.selectedFlight.plane.countOfRows}"/>
+                        </p:inputText>
+                        <p:outputLabel value="Место"/>
+                        <p:inputText value="#{clientBean.selectedPlace}" id="place"
+                                validatorMessage="Место должно быть от 1 до #{clientBean.selectedFlight.plane.placesInRow}"
+                                converterMessage="Место должно быть числом">
+                            <f:validateLongRange minimum="1" maximum="#{clientBean.selectedFlight.plane.placesInRow}"/>
+                        </p:inputText>
+                    </p:panelGrid>
+                    <h:commandButton value="Купить билет" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            action="#{clientBean.buyTicket()}"/>
+                </f:validateBean>
+            </h:form>
+            <br/>
+            <h3><h:outputLabel value="Легенда" style="color: red"/></h3>
+            <p:panelGrid columns="2" style="border:1px">
+                <h:commandButton style="color: red; border-color: red; border-width: 5px;"
+                                 styleClass="button-small" value="З"/>
+                <p:outputLabel value="Место занято"/>
+                <h:commandButton style="color: blue; border-color: blue; border-width: 5px;"
+                                 styleClass="button-small" value="Б"/>
+                <p:outputLabel value="Место забронировано"/>
+                <h:commandButton styleClass="button-small" value="№"/>
+                <p:outputLabel value="Место свободно"/>
+            </p:panelGrid>
+            <br/>
+            <br/>
+            <h:outputLink value="clientPage.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

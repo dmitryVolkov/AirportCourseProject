@@ -211,5 +211,4 @@ public class RegistrationBean implements Serializable {
             fc.renderResponse();
         }
     }
-
 }

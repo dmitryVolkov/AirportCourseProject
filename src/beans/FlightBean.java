@@ -5,18 +5,12 @@ import views.FlightEJBBeanLocal;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Named;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Named
 @SessionScoped
@@ -39,6 +33,8 @@ public class FlightBean implements Serializable {
 
     private int selectedRouteId;
 
+    private int price;
+
     public List<Flight> getListOfFlights() {
         listOfFlights = flightEJB.getListOfFlights();
         return listOfFlights;
@@ -54,6 +50,16 @@ public class FlightBean implements Serializable {
         return "confirmDeletingFlight";
     }
 
+    public String goToAddingFlight(){
+        timeOfDeparture = null;
+        timeOfArrival = null;
+        selectedPilotId = 0;
+        selectedPlaneId = 0;
+        selectedRouteId = 0;
+        price = 0;
+        return "addFlight";
+    }
+
     public String confirmDeletingFlight(){
         flightEJB.deleteFlight(selectedFlight);
         return "showFlights";
@@ -63,6 +69,7 @@ public class FlightBean implements Serializable {
         selectedFlight = flight;
         timeOfDeparture = selectedFlight.getTimeOfDeparture();
         timeOfArrival = selectedFlight.getTimeOfArrival();
+        price = selectedFlight.getPrice();
         selectedPilotId = selectedFlight.getPilot().getId();
         selectedPlaneId = selectedFlight.getPlane().getId();
         selectedRouteId = selectedFlight.getRoute().getId();
@@ -72,6 +79,7 @@ public class FlightBean implements Serializable {
     public String editFlight(){
         selectedFlight.setTimeOfDeparture(timeOfDeparture);
         selectedFlight.setTimeOfArrival(timeOfArrival);
+        selectedFlight.setPrice(price);
         flightEJB.editFlight(selectedFlight, selectedPilotId, selectedPlaneId, selectedRouteId);
         return "showFlights";
     }
@@ -80,6 +88,7 @@ public class FlightBean implements Serializable {
         Flight flight = new Flight();
         flight.setTimeOfDeparture(timeOfDeparture);
         flight.setTimeOfArrival(timeOfArrival);
+        flight.setPrice(price);
         flightEJB.addFlight(flight, selectedPilotId, selectedPlaneId, selectedRouteId);
         return "showFlights";
     }
@@ -132,5 +141,13 @@ public class FlightBean implements Serializable {
 
     public void setSelectedRouteId(int selectedRouteId) {
         this.selectedRouteId = selectedRouteId;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

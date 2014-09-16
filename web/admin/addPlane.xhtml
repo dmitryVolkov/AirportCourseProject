@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Add Plane</title>
@@ -32,10 +32,14 @@
                     <p:inputText value="#{planeBean.year}" id="year"/>
 
                     <p:outputLabel value="Количество рядов"/>
-                    <p:inputText value="#{planeBean.countOfRows}" id="countOfRows"/>
+                    <p:inputText value="#{planeBean.countOfRows}" id="countOfRows" validatorMessage="Количество рядов может быть от 0 до 15">
+                        <f:validateLongRange minimum="0" maximum="15"/>
+                    </p:inputText>
 
                     <p:outputLabel value="Количество мест в ряду"/>
-                    <p:inputText value="#{planeBean.placesInRow}" id="placesInRow"/>
+                    <p:inputText value="#{planeBean.placesInRow}" id="placesInRow" validatorMessage="Количество мест в ряду может быть 0 от до 10">
+                        <f:validateLongRange minimum="0" maximum="10"/>
+                    </p:inputText>
                 </p:panelGrid>
                 <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                                  value="Добавить самолёт" action="#{planeBean.addPlane()}"/>

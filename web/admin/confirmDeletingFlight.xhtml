@@ -52,6 +52,9 @@
 
                     <p:outputLabel value="Количество мест в ряду"/>
                     <p:outputLabel value="#{flightBean.selectedFlight.plane.placesInRow}"/>
+
+                    <p:outputLabel value="Цена билета"/>
+                    <p:outputLabel value="#{flightBean.selectedFlight.price}"/>
                 </p:panelGrid>
                 <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                                  value="Удалить полёт" action="#{flightBean.confirmDeletingFlight}"/>

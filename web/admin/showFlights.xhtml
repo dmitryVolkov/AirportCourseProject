@@ -44,6 +44,10 @@
                         <p:outputLabel value="#{flight.route.title}"/>
                     </p:column>
 
+                    <p:column headerText="Цена полета">
+                        <p:outputLabel value="#{flight.price}"/>
+                    </p:column>
+
                     <p:column style="width: 10%">
                         <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                                          action="#{flightBean.goToShowFlight(flight)}" value="Просмотр информации"/>
@@ -61,9 +65,10 @@
                 </p:dataTable>
             </h:form>
             <br/>
-            <h:outputLink value="addFlight.xhtml" style="color: royalblue">
-                Добавить полет
-            </h:outputLink>
+            <h:form>
+                <h:commandLink style="color: royalblue" action="#{flightBean.goToAddingFlight()}"
+                               value="Добавить полет"/>
+            </h:form>
             <br/>
             <h:outputLink value="adminPage.xhtml" style="color: royalblue">
                 Вернуться назад
