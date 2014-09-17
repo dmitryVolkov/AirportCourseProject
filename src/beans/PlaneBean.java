@@ -4,6 +4,7 @@ import views.PlaneEJBBeanLocal;
 import model.Plane;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Named;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -37,6 +38,10 @@ public class PlaneBean implements Serializable {
     public String addPlane(){
         Plane plane = new Plane(model, year, countOfRows, placesInRow);
         planeEJBBean.addPlane(plane);
+        model = "";
+        year = 0;
+        countOfRows = 0;
+        placesInRow = 0;
         return "showPlanes";
     }
 

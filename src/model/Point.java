@@ -33,9 +33,9 @@ public class Point implements Serializable {
 	public Point() {
 	}
 
-    public Point(String city, String country) {
-        this.city = city;
+    public Point(String country, String city) {
         this.country = country;
+        this.city = city;
     }
 
     public int getId() {

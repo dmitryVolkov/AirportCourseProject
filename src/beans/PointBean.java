@@ -35,6 +35,8 @@ public class PointBean implements Serializable {
     public String addPoint(){
         Point point = new Point(country, city);
         pointEJBBean.addPoint(point);
+        country = "";
+        city = "";
         return "showPoints";
     }
 

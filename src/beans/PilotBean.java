@@ -51,6 +51,16 @@ public class PilotBean implements Serializable {
         return listOfPilots;
     }
 
+    public String goToAddPilot(){
+        surname = "";
+        name = "";
+        patronymic = "";
+        phonenumber = "";
+        address = "";
+        selectedCategory = 0;
+        return "addPilot";
+    }
+
     public String addPilot(){
         Pilot pilot = new Pilot(surname, name, patronymic, phonenumber, address, selectedCategory);
         pilotEJBBean.addPilot(pilot);

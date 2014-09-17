@@ -50,9 +50,9 @@
                 </p:dataTable>
             </h:form>
             <br/>
-            <h:outputLink value="addPilot.xhtml" style="color: royalblue">
-                Добавить пилота
-            </h:outputLink>
+            <h:form>
+                <h:commandLink value="Добавить пилота" action="#{pilotBean.goToAddPilot()}" style="color: royalblue"/>
+            </h:form>
             <br/>
             <h:outputLink value="adminPage.xhtml" style="color: royalblue">
                 Вернуться назад

@@ -7,7 +7,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Planes page</title>
@@ -22,6 +23,7 @@
     <ui:composition template="adminMain.xhtml">
         <ui:define name="content">
             <h3><h:outputLabel value="Список самолетов" style="color: red"/></h3>
+
             <h:form>
                 <p:dataTable value="#{planeBean.listOfPlanes}" var="plane" style="width: 95%">
                     <p:column headerText="Модель">
@@ -47,8 +49,9 @@
                 </p:dataTable>
                 <br/>
                 <h:outputLink value="addPlane.xhtml" style="color: royalblue">
-                    Добавить самолёт
+                    Добавить самолет
                 </h:outputLink>
+                <br/>
                 <br/>
                 <h:outputLink value="adminPage.xhtml" style="color: royalblue">
                     Вернуться назад
