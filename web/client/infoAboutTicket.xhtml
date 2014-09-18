@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Info About Ticket</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="clientMain.xhtml">
+        <ui:define name="content">
+            <h3><h:outputLabel value="Информация о билете" style="color: red"/></h3>
+            <p:panelGrid columns="2" style="border:1px">
+                <p:outputLabel value="Ряд"/>
+                <p:outputLabel value="#{ticketBean.selectedTicket.row}"/>
+
+                <p:outputLabel value="Место"/>
+                <p:outputLabel value="#{ticketBean.selectedTicket.place}"/>
+
+                <p:outputLabel value="Время отправления"/>
+                <p:outputLabel value="#{flightBean.convertJavaUtilDate(ticketBean.selectedTicket.flight.timeOfDeparture)}"/>
+
+                <p:outputLabel value="Время прибытия"/>
+                <p:outputLabel value="#{flightBean.convertJavaUtilDate(ticketBean.selectedTicket.flight.timeOfArrival)}"/>
+
+                <p:outputLabel value="Точка отправления"/>
+                <p:outputLabel value="#{ticketBean.selectedTicket.flight.route.point1.country} -
+                    #{ticketBean.selectedTicket.flight.route.point2.city}"/>
+
+                <p:outputLabel value="Точка прибытия"/>
+                <p:outputLabel value="#{ticketBean.selectedTicket.flight.route.point2.country} -
+                    #{ticketBean.selectedTicket.flight.route.point2.city}"/>
+
+                <p:outputLabel value="Дистанция"/>
+                <p:outputLabel value="#{ticketBean.selectedTicket.flight.route.distance}"/>
+            </p:panelGrid>
+            <br/>
+            <h:form>
+                <h:commandLink style="color: royalblue" action="#{ticketBean.goToShowReservingPlaces(ticketBean.selectedFlight)}"
+                        value="Вернуться назад"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

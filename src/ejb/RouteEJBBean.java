@@ -1,5 +1,6 @@
 package ejb;
 
+import model.Discount;
 import model.Point;
 import model.Route;
 import views.RouteEJBBeanLocal;
@@ -50,5 +51,4 @@ public class RouteEJBBean implements RouteEJBBeanLocal {
         route.setDistance(distance);
         abstractAirportFacade.edit(route, emA);
     }
-
 }

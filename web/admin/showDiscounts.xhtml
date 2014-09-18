@@ -10,7 +10,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title>Pilots Page</title>
+    <title>Discounts Page</title>
     <meta name="description" content="website description" />
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -21,37 +21,35 @@
 <h:body>
     <ui:composition template="adminMain.xhtml">
         <ui:define name="content">
-            <h3><h:outputLabel value="Список пилотов" style="color: red"/></h3>
+            <h3><h:outputLabel value="Список скидок" style="color: red"/></h3>
             <h:form>
-                <p:dataTable value="#{pilotBean.listOfPilots}" var="pilot" style="width: 95%">
-                    <p:column headerText="Фамилия">
-                        <p:outputLabel value="#{pilot.surname}"/>
+                <p:dataTable var="discount" value="#{discountBean.listOfDiscounts}" style="width: 95%">
+                    <p:column headerText="Название">
+                        <p:outputLabel value="#{discount.title}"/>
                     </p:column>
-                    <p:column headerText="Имя">
-                        <p:outputLabel value="#{pilot.name}"/>
+                    <p:column headerText="Процент">
+                        <p:outputLabel value="#{discount.percentOfDiscount} %"/>
                     </p:column>
-                    <p:column headerText="Отчество">
-                        <p:outputLabel value="#{pilot.patronymic}"/>
+                    <p:column headerText="Маршрут">
+                        <p:outputLabel value="#{discountBean.findRouteByDiscountId(discount.id).title}"/>
                     </p:column>
-                    <p:column headerText="Номер телефона">
-                        <p:outputLabel value="#{pilot.phonenumber}"/>
+                    <p:column headerText="Точка отправления">
+                        <p:outputLabel value="#{discountBean.findRouteByDiscountId(discount.id).point1.country}
+                            - #{discountBean.findRouteByDiscountId(discount.id).point1.city}"/>
                     </p:column>
-                    <p:column headerText="Категория">
-                        <p:outputLabel value="#{pilot.category} категория"/>
-                    </p:column>
-                    <p:column style="width: 10%">
-                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                                         action="#{pilotBean.goToShowPilot(pilot)}" value="Просмотр информации"/>
+                    <p:column headerText="Точка назначения">
+                        <p:outputLabel value="#{discountBean.findRouteByDiscountId(discount.id).point2.country}
+                            - #{discountBean.findRouteByDiscountId(discount.id).point2.city}"/>
                     </p:column>
                     <p:column style="width: 7%">
                         <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-                                         value="Удалить" action="#{pilotBean.goToDeletePilot(pilot)}"/>
+                                         value="Удалить" action="#{discountBean.deleteDiscount(discount)}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>
             <br/>
             <h:form>
-                <h:commandLink value="Добавить пилота" action="#{pilotBean.goToAddPilot()}" style="color: ro"/>
+                <h:commandLink value="Добавить скидку" action="addDiscount" style="color: royalblue"/>
             </h:form>
             <br/>
             <h:outputLink value="adminPage.xhtml" style="color: royalblue">

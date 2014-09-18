@@ -27,6 +27,14 @@ public class Ticket implements Serializable {
 	public Ticket() {
 	}
 
+    public Ticket(int row, int place, String status, int userId, Flight flight){
+        this.row = row;
+        this.place = place;
+        this.status = status;
+        this.userId = userId;
+        this.flight = flight;
+    }
+
 	public int getId() {
 		return this.id;
 	}

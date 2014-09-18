@@ -94,7 +94,8 @@ public class FlightBean implements Serializable {
     }
 
     public String convertJavaUtilDate(Date date){
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd hh:mm:ss");
+//        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         String dateString = sdf.format(date);
         return dateString;
     }

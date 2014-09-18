@@ -21,16 +21,13 @@ public class Billstat implements Serializable {
 	private int countOfMoney;
 
 	@Temporal(TemporalType.DATE)
-	private Date currentDate;
+	private Date lastDate;
 
 	private String number;
 
-	private String operation;
+	private String lastOperation;
 
-	private int sum;
-
-	@Column(name="ticket_id")
-	private int ticketId;
+	private int lastSum;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -42,10 +39,10 @@ public class Billstat implements Serializable {
     public Billstat(int countOfMoney, Date currentDate, String number, String operation,
                     int sum){
         this.countOfMoney = countOfMoney;
-        this.currentDate = currentDate;
+        this.lastDate = currentDate;
         this.number = number;
-        this.operation = operation;
-        this.sum = sum;
+        this.lastOperation = operation;
+        this.lastSum = sum;
     }
 
 	public int getId() {
@@ -64,44 +61,12 @@ public class Billstat implements Serializable {
 		this.countOfMoney = countOfMoney;
 	}
 
-	public Date getCurrentDate() {
-		return this.currentDate;
-	}
-
-	public void setCurrentDate(Date currentDate) {
-		this.currentDate = currentDate;
-	}
-
 	public String getNumber() {
 		return this.number;
 	}
 
 	public void setNumber(String number) {
 		this.number = number;
-	}
-
-	public String getOperation() {
-		return this.operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
-	}
-
-	public int getSum() {
-		return this.sum;
-	}
-
-	public void setSum(int sum) {
-		this.sum = sum;
-	}
-
-	public int getTicketId() {
-		return this.ticketId;
-	}
-
-	public void setTicketId(int ticketId) {
-		this.ticketId = ticketId;
 	}
 
 	public User getUser() {
@@ -112,4 +77,27 @@ public class Billstat implements Serializable {
 		this.user = user;
 	}
 
+    public Date getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(Date lastDate) {
+        this.lastDate = lastDate;
+    }
+
+    public String getLastOperation() {
+        return lastOperation;
+    }
+
+    public void setLastOperation(String lastOperation) {
+        this.lastOperation = lastOperation;
+    }
+
+    public int getLastSum() {
+        return lastSum;
+    }
+
+    public void setLastSum(int lastSum) {
+        this.lastSum = lastSum;
+    }
 }

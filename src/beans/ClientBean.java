@@ -1,9 +1,12 @@
 package beans;
 
 import com.sun.javafx.font.FontConfigManager;
+import model.Billstat;
+import model.Discount;
 import model.Flight;
 import model.Ticket;
 import views.ClientEJBBeanLocal;
+import views.CommonEJBBeanLocal;
 import views.FlightEJBBeanLocal;
 
 import javax.ejb.EJB;
@@ -26,10 +29,20 @@ public class ClientBean implements Serializable {
     @Inject
     private UserIdHolder userIdHolder;
 
+    @Inject
+    private DiscountBean discountBean;
+
     private int userId;
+
+    private boolean resultOfBuyingTicket;
+
+    private boolean resultOfReservingTicket;
 
     @EJB
     private ClientEJBBeanLocal clientEJBBean;
+
+    @EJB
+    private CommonEJBBeanLocal commonEJBBean;
 
     private Flight selectedFlight;
 
@@ -38,6 +51,8 @@ public class ClientBean implements Serializable {
     private int selectedRow;
 
     private int selectedPlace;
+
+    private Billstat billstat;
 
     public Flight getSelectedFlight() {
         return selectedFlight;
@@ -53,8 +68,27 @@ public class ClientBean implements Serializable {
         return 0;
     }
 
+    public int calculateResultPrice(int price){
+        int discount = price / 10;
+        return  (price - discount);
+    }
+
+    public int calculateReservePrice(int price){
+        int discount = discountBean.findDiscountByRouteId(selectedFlight.getRoute().getId()).getPercentOfDiscount();
+        int finalPrice = price - (price / 100 * discount);
+        return finalPrice;
+    }
+
     public String buyTicket(){
+        Ticket ticket = new Ticket(selectedRow, selectedPlace, "З", userIdHolder.getUserId(), selectedFlight);
+        resultOfBuyingTicket = commonEJBBean.buyTicketAndUpdateBillstat(ticket);
         return "resultBuyingTicket";
+    }
+
+    public String reserveTicket(){
+        Ticket ticket = new Ticket(selectedRow, selectedPlace, "Б", userIdHolder.getUserId(), selectedFlight);
+        resultOfReservingTicket = commonEJBBean.reserveTicket(ticket);
+        return "resultReservingTicket";
     }
 
     public String goToShowInfoAboutFlight(Flight flight){
@@ -66,6 +100,15 @@ public class ClientBean implements Serializable {
         selectedFlight = flight;
         listOfTickets = clientEJBBean.getListOfTicketsByFlight(selectedFlight);
         return "showPlaces";
+    }
+
+    public Billstat findBillstatByUserId(){
+        return commonEJBBean.getBillstatByUserId(userIdHolder.getUserId());
+    }
+
+    public Billstat getBillstat() {
+        billstat = findBillstatByUserId();
+        return billstat;
     }
 
     public List<Ticket> getListOfTickets() {
@@ -88,24 +131,24 @@ public class ClientBean implements Serializable {
         this.selectedPlace = selectedPlace;
     }
 
-    public void validateOnCountsForUser(ComponentSystemEvent event){
-        FacesContext fc = FacesContext.getCurrentInstance();
-        UIComponent component = event.getComponent();
-        UIInput uiInput = (UIInput) component.findComponent("row");
-        String inputRowId = uiInput.getClientId();
-        int counter = 0;
-        for (Ticket ticket : listOfTickets){
-            if ((ticket.getFlight().getId() == selectedFlight.getId()) &&
-                    (ticket.getUserId() == userIdHolder.getUserId()) && (ticket.getStatus().equals("Б")))
-                counter++;
-        }
-        if (counter >= 4){
-            FacesMessage msg = new FacesMessage("Нельзя забронировать более 4х мест на один полет");
-            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            fc.addMessage(inputRowId, msg);
-            fc.renderResponse();
-        }
-    }
+//    public void validateOnCountsForUser(ComponentSystemEvent event){
+//        FacesContext fc = FacesContext.getCurrentInstance();
+//        UIComponent component = event.getComponent();
+//        UIInput uiInput = (UIInput) component.findComponent("row");
+//        String inputRowId = uiInput.getClientId();
+//        int counter = 0;
+//        for (Ticket ticket : listOfTickets){
+//            if ((ticket.getFlight().getId() == selectedFlight.getId()) &&
+//                    (ticket.getUserId() == userIdHolder.getUserId()) && (ticket.getStatus().equals("Б")))
+//                counter++;
+//        }
+//        if (counter >= 4){
+//            FacesMessage msg = new FacesMessage("Нельзя забронировать более 4х мест на один полет");
+//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+//            fc.addMessage(inputRowId, msg);
+//            fc.renderResponse();
+//        }
+//    }
 
     public void userIdListener(ActionEvent actionEvent){
         int userId = ((Integer) actionEvent.getComponent().getAttributes().get("userid")).intValue();
@@ -125,10 +168,22 @@ public class ClientBean implements Serializable {
                 : uiInputPlace.getLocalValue().toString();
         int result = checkPlaceOnBusyOrReserve(Integer.parseInt(row),Integer.parseInt(place));
         if (result == 1 || result == 2){
-            FacesMessage msg = new FacesMessage("Ряд " + row + " Место " + place + " уже забронировано");
+            FacesMessage msg = new FacesMessage("Ряд " + row + " Место " + place + " уже забронировано или занято");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             fc.addMessage(inputRowId, msg);
             fc.renderResponse();
         }
+    }
+
+    public boolean isResultOfBuyingTicket() {
+        return resultOfBuyingTicket;
+    }
+
+    public void setResultOfBuyingTicket(boolean resultOfBuyingTicket) {
+        this.resultOfBuyingTicket = resultOfBuyingTicket;
+    }
+
+    public boolean isResultOfReservingTicket() {
+        return resultOfReservingTicket;
     }
 }

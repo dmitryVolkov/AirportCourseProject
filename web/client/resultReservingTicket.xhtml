@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title>Result buying ticket</title>
+    <title>Result of reserving ticket</title>
     <meta name="description" content="website description" />
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -18,8 +21,8 @@
 <h:body>
     <ui:composition template="clientMain.xhtml">
         <ui:define name="content">
-            <ui:fragment rendered="#{clientBean.resultOfBuyingTicket == true}">
-                <h3><h:outputLabel value="Вы купили билет" style="color: red"/></h3>
+            <ui:fragment rendered="#{clientBean.resultOfReservingTicket == true}">
+                <h3><h:outputLabel value="Вы забронировали билет" style="color: red"/></h3>
                 <br/>
                 <p:panelGrid columns="2" style="border:1px">
                     <p:outputLabel value="Время отправления"/>
@@ -47,19 +50,17 @@
                     <p:outputLabel value="#{clientBean.selectedPlace}"/>
 
                     <p:outputLabel value="Цена"/>
-                    <p:outputLabel value="#{clientBean.calculateResultPrice(clientBean.selectedFlight.price)}"/>
+                    <p:outputLabel value="#{clientBean.calculateReservePrice(clientBean.selectedFlight.price)}"/>
                 </p:panelGrid>
             </ui:fragment>
-            <ui:fragment rendered="#{clientBean.resultOfBuyingTicket == false}">
-                <h3><h:outputLabel value="На вашем счету недостаточно денег" style="color: red"/></h3>
-                <br/>
-                <p>Цена билета - <p:outputLabel value="#{clientBean.selectedFlight.price}"/></p>
-                <p>На вашем счету всего лишь - <p:outputLabel value="#{clientBean.billstat.countOfMoney}"/></p>
+            <ui:fragment rendered="#{clientBean.resultOfReservingTicket == false}">
+                <p:outputLabel value="Один пользователь не может забронировать более 3х мест на один полет сразу."/>
             </ui:fragment>
-            <h:outputLink value="showPlaces.xhtml" style="color: royalblue">
-                Вернуться к странице просмотра мест
-            </h:outputLink>
+            <h:form>
+                <h:commandLink value="Вернуться к странице просмотра мест" action="#{clientBean.goToShowPlaces(clientBean.selectedFlight)}" style="color: royalblue"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>
+
 </html>

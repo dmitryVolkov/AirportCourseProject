@@ -29,6 +29,12 @@ public class Reserving implements Serializable {
 	public Reserving() {
 	}
 
+    public Reserving(Date dateOfReserve, int ticketId, int userId){
+        this.dateOfReserve = dateOfReserve;
+        this.ticketId = ticketId;
+        this.userId = userId;
+    }
+
 	public int getId() {
 		return this.id;
 	}

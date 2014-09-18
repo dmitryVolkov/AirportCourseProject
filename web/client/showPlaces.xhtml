@@ -24,6 +24,10 @@
     <h:outputStylesheet library="css" name="style.css"  />
     <ui:composition template="clientMain.xhtml">
         <ui:define name="content">
+            <h3><h:outputLabel value="Скидка"/></h3>
+            <p>При покупке билета онлайн вы автоматически получаете скидку 10%</p>
+            <p>При бронировании билета вы получаете скидку
+                <p:outputLabel value="#{discountBean.findDiscountByRouteId(clientBean.selectedFlight.route.id).percentOfDiscount} %"/> </p>
             <h3><h:outputLabel value="Информация о местах" style="color: red"/></h3>
             <br/>
             <c:forEach var="row" begin="0" end="#{clientBean.selectedFlight.plane.countOfRows - 1}" varStatus="rowStatus">
@@ -49,7 +53,6 @@
             <h:form>
                 <f:validateBean>
                     <f:event type="postValidate" listener="#{clientBean.validateOnBusyOrReserve}"/>
-                    <f:event type="postValidate" listener="#{clientBean.validateOnCountsForUser}"/>
                     <p:messages/>
                     <p:panelGrid columns="2" style="border:1px">
                         <p:outputLabel value="Ряд"/>
@@ -67,6 +70,8 @@
                     </p:panelGrid>
                     <h:commandButton value="Купить билет" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                             action="#{clientBean.buyTicket()}"/>
+                    <h:commandButton value="Забронировать билет" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                     action="#{clientBean.reserveTicket()}"/>
                 </f:validateBean>
             </h:form>
             <br/>
@@ -82,6 +87,10 @@
                 <p:outputLabel value="Место свободно"/>
             </p:panelGrid>
             <br/>
+            <br/>
+            <h:form>
+                <p:commandLink value="Просмотр забронированных мест" action="#{ticketBean.goToShowReservingPlaces(clientBean.selectedFlight)}" style="color: royalblue"/>
+            </h:form>
             <br/>
             <h:outputLink value="clientPage.xhtml" style="color: royalblue">
                 Вернуться назад

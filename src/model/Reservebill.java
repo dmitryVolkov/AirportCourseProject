@@ -11,10 +11,6 @@ public class Reservebill implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private int finalSum;
-
-	private int prepay;
-
 	private int price;
 
 	@ManyToOne
@@ -26,28 +22,18 @@ public class Reservebill implements Serializable {
 	public Reservebill() {
 	}
 
+    public Reservebill(int price, Discount discount, Reserving reserving){
+        this.price = price;
+        this.discount = discount;
+        this.reserving = reserving;
+    }
+
 	public int getId() {
 		return this.id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getFinalSum() {
-		return this.finalSum;
-	}
-
-	public void setFinalSum(int finalSum) {
-		this.finalSum = finalSum;
-	}
-
-	public int getPrepay() {
-		return this.prepay;
-	}
-
-	public void setPrepay(int prepay) {
-		this.prepay = prepay;
 	}
 
 	public int getPrice() {

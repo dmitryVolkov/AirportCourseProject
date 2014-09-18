@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Show reserving tickets</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+</h:head>
+
+<h:body>
+    <ui:composition template="clientMain.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <h3><h:outputLabel value="Просмотр забронированных билетов" style="color: red"/></h3>
+                <br/>
+                <p:dataTable var="ticket" value="#{ticketBean.listOfTickets}" style="width: 95%">
+                    <p:column headerText="Ряд">
+                        <p:outputLabel value="#{ticket.row}"/>
+                    </p:column>
+                    <p:column headerText="Место">
+                        <p:outputLabel value="#{ticket.place}"/>
+                    </p:column>
+                    <p:column headerText="Точка отправления">
+                        <p:outputLabel value="#{ticket.flight.route.point1.country} - #{ticket.flight.route.point1.city}"/>
+                    </p:column>
+                    <p:column headerText="Точка назначения">
+                        <p:outputLabel value="#{ticket.flight.route.point2.country} - #{ticket.flight.route.point2.city}"/>
+                    </p:column>
+                    <p:column headerText="Время отправления">
+                        <p:outputLabel value="#{flightBean.convertJavaUtilDate(ticket.flight.timeOfDeparture)}"/>
+                    </p:column>
+                    <p:column headerText="Время прибытия">
+                        <p:outputLabel value="#{flightBean.convertJavaUtilDate(ticket.flight.timeOfArrival)}"/>
+                    </p:column>
+                    <p:column style="width: 10%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         action="#{ticketBean.goToShowInfoAboutTicket(ticket)}" value="Просмотр информации"/>
+                    </p:column>
+                    <p:column style="width: 7%">
+                        <h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                                         action="#{ticketBean.deleteTicket(ticket)}" value="Удалить"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <br/>
+            <h:outputLink value="showPlaces.xhtml" style="color: royalblue">
+                Вернуться назад
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>
